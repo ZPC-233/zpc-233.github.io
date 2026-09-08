@@ -1,11 +1,10 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Zeng Peichen's Personal Homepage</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Peichen Zeng's Personal Homepage</title>
     <style>
-        /* 全局重置与基础字体 */
         * {
             margin: 0;
             padding: 0;
@@ -13,174 +12,410 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background: #fafafa;
-            color: #222;
+            font-family: 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f8fafc;
+            color: #1e293b;
             line-height: 1.6;
-            padding: 2rem 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .container {
-            max-width: 820px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 2.5rem 3rem;
-            border-radius: 12px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            max-width: 880px;
+            width: 100%;
+            padding: 2rem 1.5rem 3rem;
+            flex: 1;
         }
 
-        /* ---------- 导航栏 ---------- */
-        nav {
-            border-bottom: 1px solid #eaeef2;
-            padding-bottom: 1rem;
-            margin-bottom: 2rem;
+        .header {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: baseline;
+            border-bottom: 2px solid #e9edf2;
+            padding-bottom: 0.75rem;
+            margin-bottom: 2.5rem;
         }
 
-        nav ul {
-            list-style: none;
+        .site-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            letter-spacing: -0.5px;
+            color: #0f172a;
+        }
+
+        .site-title a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .nav {
             display: flex;
             gap: 2rem;
             flex-wrap: wrap;
         }
 
-        nav ul li {
+        .nav button {
+            background: none;
+            border: none;
             font-size: 1rem;
             font-weight: 500;
-            color: #555;
-            cursor: default;
-            letter-spacing: 0.3px;
+            color: #64748b;
+            cursor: pointer;
+            padding: 0.25rem 0;
+            transition: color 0.2s, border-bottom 0.2s;
+            border-bottom: 2px solid transparent;
+            font-family: inherit;
         }
 
-        nav ul li:first-child {
-            color: #0366d6;      /* 高亮当前页 “Home” */
-            font-weight: 600;
+        .nav button:hover {
+            color: #0f172a;
         }
 
-        /* ---------- 主体内容 ---------- */
-        h1 {
-            font-size: 1.6rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-            letter-spacing: -0.3px;
+        .nav button.active {
+            color: #0f172a;
+            border-bottom-color: #0f172a;
         }
 
-        .subhead {
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 0.1rem;
+        /* ---------- Content ---------- */
+        .tab-content {
+            display: none;
+            animation: fadeUp 0.3s ease forwards;
         }
 
-        .location {
-            font-size: 0.95rem;
-            color: #777;
-            margin-bottom: 1.8rem;
-        }
-
-        /* CV 大标题 */
-        .section-title {
-            font-size: 1.5rem;
-            font-weight: 600;
-            margin: 2rem 0 1.2rem 0;
-            letter-spacing: -0.2px;
-        }
-
-        /* 教育条目 */
-        .edu-item {
-            margin-bottom: 1.8rem;
-        }
-
-        .edu-item .degree {
-            font-weight: 600;
-            font-size: 1.05rem;
-        }
-
-        .edu-item .meta {
-            color: #555;
-            font-size: 0.95rem;
-        }
-
-        .edu-item .date {
-            color: #777;
-            font-size: 0.9rem;
+        .tab-content.active {
             display: block;
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ---------- Home ---------- */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+        }
+
+        .hero h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+            color: #0f172a;
+            line-height: 1.2;
+        }
+
+        .hero .subhead {
+            font-size: 1.25rem;
+            font-weight: 400;
+            color: #475569;
             margin-top: 0.1rem;
         }
 
-        /* Awards 部分 */
-        .awards-section {
-            margin-top: 2rem;
+        .hero .location {
+            font-size: 1rem;
+            color: #94a3b8;
+            margin-top: 0.1rem;
         }
 
-        .awards-section .label {
+        .hero .bio {
+            margin-top: 1.5rem;
+            max-width: 600px;
+            font-size: 1.05rem;
+            color: #334155;
+        }
+
+        .hero .bio a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .hero .bio a:hover {
+            text-decoration: underline;
+        }
+
+        /* ---------- CV ---------- */
+        .cv-section {
+            margin-top: 0.5rem;
+        }
+
+        .cv-section .entry {
+            margin-bottom: 2rem;
+        }
+
+        .cv-section .entry h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #0f172a;
+            letter-spacing: -0.3px;
+            border-bottom: 1px solid #e9edf2;
+            padding-bottom: 0.4rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .cv-item {
+            margin-bottom: 1.2rem;
+        }
+
+        .cv-item .title {
             font-weight: 600;
             font-size: 1.05rem;
+            color: #0f172a;
+        }
+
+        .cv-item .meta {
+            font-size: 0.95rem;
+            color: #475569;
+            margin-top: 0.1rem;
+        }
+
+        .cv-item .desc {
+            margin-top: 0.3rem;
+            font-size: 0.98rem;
+            color: #334155;
+        }
+
+        .cv-item .desc ul {
+            list-style: disc;
+            padding-left: 1.4rem;
+            margin-top: 0.2rem;
+        }
+
+        .cv-item .desc ul li {
             margin-bottom: 0.2rem;
         }
 
-        .awards-section .award-item {
-            color: #333;
-            font-size: 0.95rem;
+        .awards-list {
+            list-style: none;
+            padding: 0;
         }
 
-        /* 辅助分割线（可选） */
-        hr {
-            border: none;
-            border-top: 1px solid #eaeef2;
-            margin: 1.8rem 0;
+        .awards-list li {
+            padding: 0.3rem 0;
+            border-bottom: 1px dashed #e9edf2;
+            font-size: 0.98rem;
+            color: #1e293b;
         }
 
-        /* 小屏适配 */
-        @media (max-width: 600px) {
-            .container {
-                padding: 1.8rem 1.2rem;
+        .awards-list li:last-child {
+            border-bottom: none;
+        }
+
+        /* ---------- Publications / Blogs  ---------- */
+        .placeholder {
+            margin-top: 0.5rem;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            background: #f1f5f9;
+            border-radius: 12px;
+            color: #64748b;
+            font-size: 1.05rem;
+        }
+
+        .placeholder strong {
+            color: #0f172a;
+        }
+
+        @media (max-width: 640px) {
+            .header {
+                flex-direction: column;
+                gap: 0.8rem;
+                align-items: flex-start;
             }
-            nav ul {
+
+            .nav {
                 gap: 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .hero .subhead {
+                font-size: 1.05rem;
+            }
+
+            .container {
+                padding: 1.2rem 1rem 2rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .nav {
+                gap: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .nav button {
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
             }
         }
     </style>
 </head>
 <body>
 
-<div class="container">
+    <div class="container">
 
-    <!-- 导航栏 -->
-    <nav>
-        <ul>
-            <li>Home</li>
-            <li>CV</li>
-            <li>Publications</li>
-            <li>Blogs</li>
-        </ul>
-    </nav>
+        <header class="header">
+            <div class="site-title">
+                <a href="#">Peichen Zeng</a>
+            </div>
+            <nav class="nav" id="navTabs">
+                <button class="active" data-tab="home">Home</button>
+                <button data-tab="cv">CV</button>
+                <button data-tab="publications">Publications</button>
+                <button data-tab="blogs">Blogs</button>
+            </nav>
+        </header>
 
-    <!-- 个人信息 -->
-    <h1>Peichen Zeng</h1>
-    <div class="subhead">An undergraduate student</div>
-    <div class="location">China</div>
 
-    <!-- CV 区块 -->
-    <div class="section-title">CV</div>
+        <!-- HOME -->
+        <section class="tab-content active" id="tab-home">
+            <div class="hero">
+                <h1>Peichen Zeng</h1>
+                <div class="subhead">An undergraduate student</div>
+                <div class="location">China</div>
+                <div class="bio">
+                    <p>
+                        I am an undergraduate student in Computer Science and Technology.
+                        My research interests include <strong>machine learning</strong>,
+                        <strong>natural language processing</strong>, and
+                        <strong>human-computer interaction</strong>.
+                    </p>
+                    <p style="margin-top: 0.6rem;">
+                        📧 <a href="mailto:peichen.zeng@example.com">peichen.zeng@example.com</a>
+                        &nbsp;·&nbsp; 🐙 <a href="#">GitHub</a>
+                        &nbsp;·&nbsp; 🐦 <a href="#">Twitter</a>
+                    </p>
+                </div>
+            </div>
+        </section>
 
-    <!-- 教育经历 -->
-    <div class="edu-item">
-        <div class="degree">B.S. in Computer Science and Technology (2024–Present)</div>
-        <div class="meta">Peichen Zeng</div>
-        <div class="date">2024 – 2028 (expected)</div>
+        <section class="tab-content" id="tab-cv">
+            <div class="cv-section">
+
+                <div class="entry">
+                    <h2>Education</h2>
+                    <div class="cv-item">
+                        <div class="title">B.S. in Computer Science and Technology</div>
+                        <div class="meta">2024 – 2028 (expected)</div>
+                        <div class="desc">
+                            <p>Peichen Zeng · China</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="entry">
+                    <h2>Awards &amp; Honors</h2>
+                    <ul class="awards-list">
+                        <li>🏅 123123</li>
+                    </ul>
+                </div>
+
+                <div class="entry" style="margin-top: 1rem;">
+                    <p style="color: #94a3b8; font-size: 0.95rem;">
+                        <em>More details available upon request.</em>
+                    </p>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- PUBLICATIONS -->
+        <section class="tab-content" id="tab-publications">
+            <div class="placeholder">
+                <p><strong>📄 Publications</strong></p>
+                <p style="margin-top: 0.5rem;">Coming soon — I am currently working on my first papers.</p>
+                <p style="margin-top: 0.3rem; font-size: 0.95rem; color: #94a3b8;">
+                    Stay tuned!
+                </p>
+            </div>
+        </section>
+
+        <!-- BLOGS -->
+        <section class="tab-content" id="tab-blogs">
+            <div class="placeholder">
+                <p><strong>✍️ Blogs</strong></p>
+                <p style="margin-top: 0.5rem;">I write about tech, research, and life as a student.</p>
+                <p style="margin-top: 0.3rem; font-size: 0.95rem; color: #94a3b8;">
+                    (No posts yet — check back later!)
+                </p>
+            </div>
+        </section>
+
     </div>
 
-    <!-- Awards 部分（根据图片中的 “Awards” 标签） -->
-    <div class="awards-section">
-        <div class="label">Awards</div>
-        <div class="award-item">123123</div>
-        <!-- 你可以继续添加更多奖项 -->
-    </div>
+    <script>
+        (function() {
+            const navButtons = document.querySelectorAll('#navTabs button');
+            const tabContents = {
+                home: document.getElementById('tab-home'),
+                cv: document.getElementById('tab-cv'),
+                publications: document.getElementById('tab-publications'),
+                blogs: document.getElementById('tab-blogs')
+            };
 
-    <!-- 底部占位（可选） -->
-    <hr>
-    <p style="font-size: 0.85rem; color: #aaa; text-align: right;">Last updated: 2026</p>
+            function switchTab(tabId) {
+                navButtons.forEach(btn => {
+                    const isActive = btn.dataset.tab === tabId;
+                    btn.classList.toggle('active', isActive);
+                });
 
-</div>
+                Object.keys(tabContents).forEach(key => {
+                    const panel = tabContents[key];
+                    if (key === tabId) {
+                        panel.classList.add('active');
+                    } else {
+                        panel.classList.remove('active');
+                    }
+                });
+            }
+
+            navButtons.forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const tabId = this.dataset.tab;
+                    if (tabId) {
+                        switchTab(tabId);
+                        // 可选：更新 URL hash（无刷新）
+                        if (history.pushState) {
+                            history.pushState(null, '', '#' + tabId);
+                        }
+                    }
+                });
+            });
+
+            window.addEventListener('hashchange', function() {
+                const hash = window.location.hash.replace('#', '');
+                if (hash && tabContents[hash]) {
+                    switchTab(hash);
+                } else {
+                    switchTab('home');
+                }
+            });
+
+            const initialHash = window.location.hash.replace('#', '');
+            if (initialHash && tabContents[initialHash]) {
+                switchTab(initialHash);
+            } else {
+                switchTab('home');
+            }
+        })();
+    </script>
 
 </body>
 </html>
